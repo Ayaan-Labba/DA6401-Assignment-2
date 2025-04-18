@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
 
 /nature_12K*
+
+wandb*/
