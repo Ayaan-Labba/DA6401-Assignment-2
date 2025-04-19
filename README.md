@@ -196,4 +196,3 @@ The visualization shows predicted vs. true class labels for sample images, with 
     - Makes predictions on test data
     - Calculates accuracy
     - Stores sample images along with predictions for visualization
-    - RetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.
