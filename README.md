@@ -11,8 +11,7 @@ DA6401-Assignment-2-PartA/
     ├── best_model.pth          # Model with the best val accuracy achieved with wandb sweep
     ├── cnn_training.ipynb      # Jupyter notebook - contains all of the code necessary for Part A of the assignment
     ├── README.md               # Project documentation
-    ├── test_prediction.png     # A 10x3 grid of sample images from the test set along with their predictions and true labels
-    └── val/
+    └── test_prediction.png     # A 10x3 grid of sample images from the test set along with their predictions and true labels
 ```
 
 ### Requirements
