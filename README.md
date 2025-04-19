@@ -1,9 +1,9 @@
 # DA6401-Assignment-2
 This assignment implements a Convolutional Neural Network (CNN) for classifying images from the iNaturalist dataset with hyperparameter optimization using Weights & Biases (wandb).
-/n
+
 ### Overview
 The notebook `**cnn_training.ipynb**` trains a CNN model to classify images from the iNaturalist dataset, which contains natural wildlife images across 10 different classes. It implements a custom CNN architecture with configurable parameters and uses Weights & Biases (wandb) for experiment tracking and hyperparameter optimization.
-\n
+
 ### Project Structure
 ```
 DA6401-Assignment-2-PartA/
@@ -23,17 +23,17 @@ DA6401-Assignment-2-PartA/
 - matplotlib
 - PIL (Python Imaging Library)
 - Weights & Biases (wandb)
-\n
+
 ## Setup Instructions
-Install required packages:\n
+Install required packages:  
 `pip install torch torchvision numpy scikit-learn matplotlib pillow wandb`
-\n
-If you have an nvidia gpu supporting CUDA with the required drivers and CUDA toolkit, install pytorch packages with:\n
+
+If you have an nvidia gpu supporting CUDA with the required drivers and CUDA toolkit, install pytorch packages with:  
 `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126`
-\n
+
 **Note:**The above is compatible with CUDA version 12.6, so ensure that this is the version installed in your system.
-\n
-Download the iNaturalist dataset and organize it into the following structure:\n
+
+Download the iNaturalist dataset and organize it into the following structure:
 ```
 nature_12K/
 └── inaturalist_12K/
@@ -46,21 +46,21 @@ nature_12K/
         ├── class_2/
         └── ...
 ```
-\n
-Go to your Weights & Biases account (https://wandb.ai) and authenticate:\n
+
+Go to your Weights & Biases account (https://wandb.ai) and authenticate:
 ```
 import wandb
 wandb.login()
 ```
-\n
+
 ## Code Structure
-The notebook is organized into several key components:\n
+The notebook is organized into several key components:
 - Model definition (CNN class)
 - Dataset handling (iNaturalistDataset class)
 - Training and validation functions
 - Hyperparameter optimization with wandb
 - Model evaluation
-\n
+
 ### CNN Model Architecture
 The CNN class defines a flexible convolutional neural network with configurable:
 - Number of convolutional layers (fixed at 5)
@@ -70,7 +70,7 @@ The CNN class defines a flexible convolutional neural network with configurable:
 - Dense layer neurons
 - Batch normalization
 - Dropout rate
-\n
+
 ```
 class CNN(nn.Module):
     def __init__(self, 
@@ -85,7 +85,7 @@ class CNN(nn.Module):
                  dropout_rate=0.0):
         # (implementation details)
 ```
-\n
+
 ### Dataset Handling
 The iNaturalistDataset class loads and preprocesses images from the dataset:
 ```
@@ -93,20 +93,20 @@ class iNaturalistDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         # (implementation details)
 ```
-\n
+
 This class:
 - Identifies class directories
 - Loads image paths
 - Creates class-to-index mapping
 - Applies specified transformations
-\n
+
 ### Data Splitting Functions
 The notebook implements stratified train-validation splits to ensure class distribution is maintained:
 ```
 pythondef create_stratified_splits(dataset, val_ratio=0.2, random_state=42):
     # (implementation details)
 ```
-\n
+
 ### Training Functions
 Several functions handle the training process:
 - `train_epoch`: Trains the model for one epoch
@@ -114,20 +114,19 @@ Several functions handle the training process:
 - `test`: Evaluates the model on the test set
 - `train_model`: Complete training pipeline without wandb
 - `train_with_wandb`: Training pipeline with wandb integration
-\n
+
 ### Running the Code
-\n
-To train the model with default parameters:\n
+To train the model with default parameters:  
 `model, val_acc = train_model()`
-\n
+
 To run hyperparameter optimization with wandb:
 ```
 sweep_id = wandb.sweep(sweep_config, project='DA6401-Assignment-2')
 wandb.agent(sweep_id, train_with_wandb, count=25)  # Run 25 experiments
 ```
-To evaluate the best model on the test set:
+To evaluate the best model on the test set:  
 `evaluate_best_model()`
-\n
+
 #### Hyperparameter Optimization
 The notebook uses wandb's Bayesian optimization to search for optimal hyperparameters:
 ```
@@ -142,7 +141,7 @@ pythonsweep_config = {
     }
 }
 ```
-\n
+
 Optimized hyperparameters include:
 - Learning rate: 0.0001 to 0.01
 - Batch size: 32, 64, or 128
@@ -152,7 +151,7 @@ Optimized hyperparameters include:
 - Batch normalization: True or False
 - Dropout rate: 0.0, 0.2, 0.3, or 0.5
 - Weight decay: 0.0, 0.0001, or 0.001
-\n
+
 #### Evaluation
 The evaluation function:
 - Loads the best model from saved weights
@@ -160,11 +159,10 @@ The evaluation function:
 - Calculates accuracy
 - Visualizes predictions with a grid of images (saved as 'test_predictions.png')
 - Logs results to wandb
-\n
+
 The visualization shows predicted vs. true class labels for sample images, with correct predictions highlighted in green and incorrect in red.
-\n
+
 ## Important Functions
-\n
 - `CNN.forward()`: The forward pass of the CNN model
     - Passes input through convolutional layers with optional batch normalization
     - Applies activation function after each layer
