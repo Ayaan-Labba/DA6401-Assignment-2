@@ -31,7 +31,7 @@ Install required packages:
 If you have an nvidia gpu supporting CUDA with the required drivers and CUDA toolkit, install pytorch packages with:  
 `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126`
 
-**Note:**The above is compatible with CUDA version 12.6, so ensure that this is the version installed in your system.
+**Note:** The above is compatible with CUDA version 12.6, so ensure that this is the version installed in your system.
 
 Download the iNaturalist dataset and organize it into the following structure:
 ```
