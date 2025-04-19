@@ -2,7 +2,7 @@
 This assignment implements a Convolutional Neural Network (CNN) for classifying images from the iNaturalist dataset with hyperparameter optimization using Weights & Biases (wandb).
 
 ### Overview
-The notebook `**cnn_training.ipynb**` trains a CNN model to classify images from the iNaturalist dataset, which contains natural wildlife images across 10 different classes. It implements a custom CNN architecture with configurable parameters and uses Weights & Biases (wandb) for experiment tracking and hyperparameter optimization.
+The notebook **`cnn_training.ipynb`** trains a CNN model to classify images from the iNaturalist dataset, which contains natural wildlife images across 10 different classes. It implements a custom CNN architecture with configurable parameters and uses Weights & Biases (wandb) for experiment tracking and hyperparameter optimization.
 
 ### Project Structure
 ```
@@ -30,12 +30,11 @@ Install required packages:
 pip install torch torchvision numpy scikit-learn matplotlib pillow wandb
 ```
 
-If your device has an nvidia gpu supporting CUDA, Install the required drivers, CUDA toolkit and Microsoft Visual Studio 2022. Then install the pytorch packages with:
+If your device has an nvidia gpu supporting CUDA, install the required drivers, CUDA toolkit and Microsoft Visual Studio 2022. Then install the pytorch packages with:
 ```
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 ```
-
-**Note:** Ensure that the CUDA toolkit installed is compatible is supported by PyTorch. The above installation is compatible with CUDA version 12.6.
+**Note:** Ensure that the CUDA toolkit installed is supported by PyTorch. The above installation is compatible with CUDA version 12.6.
 
 Download the iNaturalist dataset and organize it into the following structure:
 ```
@@ -59,8 +58,8 @@ wandb.login()
 
 ## Code Structure
 The notebook is organized into the following sections:
-- Model definition (CNN class)
-- Dataset handling (iNaturalistDataset class)
+- Model definition (`CNN` class)
+- Dataset handling (`iNaturalistDataset` class)
 - Training and validation functions
 - Hyperparameter optimization with wandb
 - Model evaluation
@@ -103,13 +102,13 @@ This class:
 - Applies specified transformations
 
 ### Data Splitting Functions
-The notebook implements stratified train-validation splits to ensure class distribution is maintained:
+The notebook implements stratified train-validation splits to ensure class distribution is maintained for equal representation in training:
 ```
 def create_stratified_splits(dataset, val_ratio=0.2, random_state=42):
 ```
 
 ### Training Functions
-Several functions handle the training process:
+The following functions handle the training process:
 - `train_epoch`: Trains the model for one epoch
 - `validate`: Evaluates the model on the validation set
 - `test`: Evaluates the model on the test set
@@ -165,7 +164,6 @@ The evaluation function:
 - Calculates accuracy
 - Visualizes predictions with a grid of images (saved as 'test_predictions.png')
 - Logs results to wandb
-
 The visualization shows predicted vs. true class labels for sample images, with correct predictions highlighted in green and incorrect in red.
 
 ## Important Functions
