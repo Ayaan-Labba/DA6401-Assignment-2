@@ -1,6 +1,6 @@
 # DA6401-Assignment-2
 This assignment implements a Convolutional Neural Network (CNN) for classifying images from the iNaturalist dataset with hyperparameter optimization using Weights & Biases (wandb).
-\n
+/n
 ### Overview
 The notebook `**cnn_training.ipynb**` trains a CNN model to classify images from the iNaturalist dataset, which contains natural wildlife images across 10 different classes. It implements a custom CNN architecture with configurable parameters and uses Weights & Biases (wandb) for experiment tracking and hyperparameter optimization.
 \n
