@@ -25,13 +25,17 @@ DA6401-Assignment-2-PartA/
 - Weights & Biases (wandb)
 
 ## Setup Instructions
-Install required packages:  
-`pip install torch torchvision numpy scikit-learn matplotlib pillow wandb`
+Install required packages:
+```
+pip install torch torchvision numpy scikit-learn matplotlib pillow wandb
+```
 
-If you have an nvidia gpu supporting CUDA with the required drivers and CUDA toolkit, install pytorch packages with:  
-`pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126`
+If your device has an nvidia gpu supporting CUDA, Install the required drivers, CUDA toolkit and Microsoft Visual Studio 2022. Then install the pytorch packages with:
+```
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+```
 
-**Note:** The above is compatible with CUDA version 12.6, so ensure that this is the version installed in your system.
+**Note:** Ensure that the CUDA toolkit installed is compatible is supported by PyTorch. The above installation is compatible with CUDA version 12.6.
 
 Download the iNaturalist dataset and organize it into the following structure:
 ```
@@ -54,7 +58,7 @@ wandb.login()
 ```
 
 ## Code Structure
-The notebook is organized into several key components:
+The notebook is organized into the following sections:
 - Model definition (CNN class)
 - Dataset handling (iNaturalistDataset class)
 - Training and validation functions
@@ -83,7 +87,6 @@ class CNN(nn.Module):
                  input_size=(224, 224),
                  use_batchnorm=False,
                  dropout_rate=0.0):
-        # (implementation details)
 ```
 
 ### Dataset Handling
@@ -91,7 +94,6 @@ The iNaturalistDataset class loads and preprocesses images from the dataset:
 ```
 class iNaturalistDataset(Dataset):
     def __init__(self, root_dir, transform=None):
-        # (implementation details)
 ```
 
 This class:
@@ -103,8 +105,7 @@ This class:
 ### Data Splitting Functions
 The notebook implements stratified train-validation splits to ensure class distribution is maintained:
 ```
-pythondef create_stratified_splits(dataset, val_ratio=0.2, random_state=42):
-    # (implementation details)
+def create_stratified_splits(dataset, val_ratio=0.2, random_state=42):
 ```
 
 ### Training Functions
@@ -116,16 +117,21 @@ Several functions handle the training process:
 - `train_with_wandb`: Training pipeline with wandb integration
 
 ### Running the Code
-To train the model with default parameters:  
-`model, val_acc = train_model()`
+To train the model with default parameters, run:  
+```
+model, val_acc = train_model()
+```
 
-To run hyperparameter optimization with wandb:
+To run hyperparameter optimization with wandb, run:
 ```
 sweep_id = wandb.sweep(sweep_config, project='DA6401-Assignment-2')
 wandb.agent(sweep_id, train_with_wandb, count=25)  # Run 25 experiments
 ```
-To evaluate the best model on the test set:  
-`evaluate_best_model()`
+
+To evaluate the best model on the test set, run:  
+```
+evaluate_best_model()
+```
 
 #### Hyperparameter Optimization
 The notebook uses wandb's Bayesian optimization to search for optimal hyperparameters:
