@@ -14,6 +14,7 @@ DA6401-Assignment-2-PartA/
     ├── test_prediction.png     # A 10x3 grid of sample images from the test set along with their predictions and true labels
     └── val/
 ```
+
 ### Requirements
 - Python 3.x
 - PyTorch
@@ -25,36 +26,33 @@ DA6401-Assignment-2-PartA/
 - Weights & Biases (wandb)
 
 ## Setup Instructions
-Install required packages:
-```
-pip install torch torchvision numpy scikit-learn matplotlib pillow wandb
-```
-
-If your device has an nvidia gpu supporting CUDA, install the required drivers, CUDA toolkit and Microsoft Visual Studio 2022. Then install the pytorch packages with:
-```
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-```
-**Note:** Ensure that the CUDA toolkit installed is supported by PyTorch. The above installation is compatible with CUDA version 12.6.
-
-Download the iNaturalist dataset and organize it into the following structure:
-```
-nature_12K/
-└── inaturalist_12K/
-    ├── train/
-    │   ├── class_1/
-    │   ├── class_2/
-    │   └── ...
-    └── val/
-        ├── class_1/
-        ├── class_2/
-        └── ...
-```
-
-Go to your Weights & Biases account (https://wandb.ai) and authenticate:
-```
-import wandb
-wandb.login()
-```
+- Install required packages:
+    ```
+    pip install torch torchvision numpy scikit-learn matplotlib pillow wandb
+    ```
+    If your device has an nvidia gpu supporting CUDA, install the required drivers, CUDA toolkit and Microsoft Visual Studio 2022. Then install the pytorch packages with:
+    ```
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+    ```
+    **Note:** Ensure that the CUDA toolkit installed is supported by PyTorch. The above installation is compatible with CUDA version 12.6.
+- Download the iNaturalist dataset and organize it into the following structure:
+    ```
+    nature_12K/
+    └── inaturalist_12K/
+        ├── train/
+        │   ├── class_1/
+        │   ├── class_2/
+        │   └── ...
+        └── val/
+            ├── class_1/
+            ├── class_2/
+            └── ...
+    ```
+- Go to your Weights & Biases account (https://wandb.ai) and authenticate:
+    ```
+    import wandb
+    wandb.login()
+    ```
 
 ## Code Structure
 The notebook is organized into the following sections:
@@ -116,21 +114,19 @@ The following functions handle the training process:
 - `train_with_wandb`: Training pipeline with wandb integration
 
 ### Running the Code
-To train the model with default parameters, run:  
-```
-model, val_acc = train_model()
-```
-
-To run hyperparameter optimization with wandb, run:
-```
-sweep_id = wandb.sweep(sweep_config, project='DA6401-Assignment-2')
-wandb.agent(sweep_id, train_with_wandb, count=25)  # Run 25 experiments
-```
-
-To evaluate the best model on the test set, run:  
-```
-evaluate_best_model()
-```
+- To train the model with default parameters, run:  
+    ```
+    model, val_acc = train_model()
+    ```
+- To run hyperparameter optimization with wandb, run:
+    ```
+    sweep_id = wandb.sweep(sweep_config, project='DA6401-Assignment-2')
+    wandb.agent(sweep_id, train_with_wandb, count=25)  # Run 25 experiments
+    ```
+- To evaluate the best model on the test set, run:  
+    ```
+    evaluate_best_model()
+    ```
 
 #### Hyperparameter Optimization
 The notebook uses wandb's Bayesian optimization to search for optimal hyperparameters:
